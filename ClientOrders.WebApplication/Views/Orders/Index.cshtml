@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ClientOrders.Data.Models.Entities.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Список заказов</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            <div class="text-fn">
+                    <label style="color:black">ID Заказа</label>
+            </div>
+            </th>
+            <th>
+            <div class="text-fn">
+                    <label style="color:black">Дата добавления</label>
+            </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label style="color:black">ID Клиента</label>
+                </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label style="color:black">Описание</label>
+                </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label style="color:black">Цена заказа</label>
+                </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label style="color:black">Дата закрытия</label>
+                </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label for="firstname" style="color:black">Действия</label>
+                </div>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderPrice)
+            </td>
+            <td>
+                @if (item.CloseDate == DateTime.MinValue)
+                {
+                    <label style="color:black">Заказ активен!</label>
+                }
+                else
+                {
+                    <label style="color:black">@Html.DisplayFor(modelItem => item.CloseDate)</label>
+                }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>  | 
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

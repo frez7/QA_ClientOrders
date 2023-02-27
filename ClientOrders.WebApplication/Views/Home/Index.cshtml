@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="justify-content-center align-items-center">
+    <div class="container1">
+        <div class="button-group">
+            <a asp-controller="Clients" asp-action="Index" class="btn btn-lg btn-secondary shadow-sm">Список клиентов</a>
+            <a asp-controller="Orders" asp-action="Index" class="btn btn-lg btn-dark shadow-sm">Список заказов</a>
+        </div>
+    </div>
+</div>

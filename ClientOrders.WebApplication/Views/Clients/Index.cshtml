@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ClientOrders.Data.Models.Entities.Client>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Список клиентов</h1>
+
+<p>
+    <a class="btn btn-dark" asp-action="Create">Добавить клиента</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            <div class="text-fn">
+                    <label for="firstname" style="color:black">ID </label>
+            </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label for="firstname" style="color:black">Имя </label>
+                </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label for="firstname" style="color:black">Фамилия</label>
+                </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label for="firstname" style="color:black">Номер телефона</label>
+                </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label for="firstname" style="color:black">Количество заказов</label>
+                </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label for="firstname" style="color:black">Дата регистрации</label>
+                </div>
+            </th>
+            <th>
+                <div class="text-fn">
+                    <label for="firstname" style="color:black">Действия</label>
+                </div>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNum)
+            </td>
+            <td>
+                @if (item.OrderAmount == 0)
+                    {
+                        <label style="color:black">Заказов нет.</label>
+                        <a asp-action="CreateOrder" asp-controller="Orders" asp-route-clientId="@item.Id" class="btn btn-sm btn-outline-danger m-1 justify-content-around">Добавить</a>
+                    }
+                    else
+                    {
+                        <label style="color:black">@Html.DisplayFor(modelItem => item.OrderAmount) заказа(-ов).</label>
+                        <a asp-action="CreateOrder" asp-controller="Orders" asp-route-clientId="@item.Id" class="btn btn-sm btn-outline-primary m-1 justify-content-around">Добавить</a>
+                    }
+                    
+
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.DateAdd)
+            </td>
+            <td>
+                @if (item.OrderAmount != 0)
+                    {
+                        <a asp-action="Orders" asp-route-id="@item.Id">Заказы</a>
+                        <a> |</a>
+                    }
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

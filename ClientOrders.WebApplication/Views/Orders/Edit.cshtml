@@ -1,0 +1,49 @@
+﻿@model ClientOrders.Data.Models.Entities.Order
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Редактирование заказа</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="input-group">
+                <span asp-for="Description" class="input-group-text">Описание</span>
+                <textarea asp-for="Description" aria-label="Описание заказа"class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderPrice" class="control-label">Цена заказа</label>
+                <input asp-for="OrderPrice" class="form-control" />
+                <span asp-validation-for="OrderPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientID" class="control-label">ID Клиента</label>
+                <input asp-for="ClientID" class="form-control" />
+                <span asp-validation-for="ClientID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CloseDate" class="control-label">Дата закрытия заказа</label>
+                <input asp-for="CloseDate" class="form-control" />
+                <span asp-validation-for="CloseDate" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-success m-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться к списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

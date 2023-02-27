@@ -1,0 +1,21 @@
+﻿@model ClientOrders.Data.Models.Entities.Order
+<h1>Добавление заказа</h1>
+
+<div class="row">
+    <div class="col-md-4">
+<form asp-action="CreateOrder" asp-controller="Orders">
+    <input type="hidden" asp-for="ClientID" />
+            <div class="input-group">
+                <span asp-for="Description" class="input-group-text">Описание</span>
+                <textarea asp-for="Description" aria-label="Описание заказа" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+    <div class="form-group">
+        <label asp-for="OrderPrice">Цена заказа</label>
+        <input asp-for="OrderPrice" class="form-control" />
+        <span asp-validation-for="OrderPrice" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success m-2">Создать заказ</button>
+    </form>
+    </div>
+</div>

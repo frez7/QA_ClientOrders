@@ -1,0 +1,57 @@
+﻿@model ClientOrders.Data.Models.Entities.Order
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Детали заказа</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <label style="color:black">Дата заказа:</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class="col-sm-2">
+            <label style="color:black">ID Клиента:</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ClientID)
+        </dd>
+        <dt class="col-sm-2">
+            <label style="color:black">Описание заказа:</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            <label style="color:black">Цена заказа:</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OrderPrice)
+        </dd>
+        <dt class="col-sm-2">
+            <label style="color:black">Дата закрытия заказа:</label>
+        </dt>
+        @if (Model.CloseDate == DateTime.MinValue)
+        {
+            <dd class="col-sm-10">
+                Заказ активен!
+            </dd>
+        }
+        else
+        {
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CloseDate)
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Редактировать</a> |
+    <a asp-action="Index">Вернуться к списку</a>
+</div>

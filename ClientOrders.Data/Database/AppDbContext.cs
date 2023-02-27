@@ -18,31 +18,5 @@ namespace ClientOrders.Data.Database
                 .GetConnectionString("ConnectionString");
             optionsBuilder.UseSqlServer(connectionString);
         }
-        public void Seed()
-        {
-            if (Clients.Any() || Orders.Any())
-                return;
-            Clients.Add(new Client()
-            {
-                FirstName= "Amantur",
-                SecondName= "Kaimov",
-                PhoneNum= 0999102030,
-                DateAdd= DateTime.Now,
-            });
-            Clients.Add(new Client()
-            {
-                FirstName = "Dimitrii",
-                SecondName = "Vinogradnik",
-                PhoneNum = 0505202020,
-                DateAdd = DateTime.Now,
-            });
-            Clients.Add(new Client()
-            {
-                FirstName = "Ashirhan",
-                SecondName = "Autahunov",
-                PhoneNum = 0700140762,
-                DateAdd = DateTime.Now,
-            });
-        }
     }
 }
